@@ -1,36 +1,33 @@
 # awesome-list
 
+A list that helps you collect your thoughts in the most minimal way possible.
+
 ## To do
 - [x] Authentication
 - [x] Restructure DB
 - [x] Navbar
 - [ ] Populate Nav Menu
-- [ ] Show Lists Dynamically
+- [x] Show Lists Dynamically
+- [ ] Delete item or archive them
 
-## Project setup
-```
-npm install
-```
+My journey into VueJS, built using Vue-CLI (wa I super shookt by their CLI ~~shookness~~), with Typescript and Firestore as my backend db. 
 
-### Compiles and hot-reloads for development
+## Installation 
 ```
-npm run serve
-```
+$ npm install
 
-### Compiles and minifies for production
-```
-npm run build
-```
+// Compiles and hot-reloads for development
+$ npm run serve
 
-### Run your tests
-```
-npm run test
-```
+// Compiles and minifies for production
+$ npm run build
 
-### Lints and fixes files
-```
-npm run lint
-```
+// Run your tests
+$ npm run test
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+// Lint files
+$ npm run lint
+
+// Fix errors
+$ npm run fix
+```
