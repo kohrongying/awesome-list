@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
-import Read from "./views/Read.vue";
+import List from "./views/List.vue";
 Vue.use(Router);
 
 export default new Router({
@@ -23,9 +23,9 @@ export default new Router({
         import(/* webpackChunkName: "about" */ "./views/About.vue")
     },
     {
-      path: "/read",
-      name: "read",
-      component: Read
+      path: "/:list",
+      name: "list",
+      component: List
     }
   ]
 });

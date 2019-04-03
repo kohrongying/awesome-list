@@ -1,12 +1,19 @@
 <template>
-  <div class="modal-bg">
-    <div class="menu">
-      <div>hello</div>
-    </div>
+  <div class="modal-bg" @click="onClose">
+    <ul class="menu">
+      <li
+        @click="goto(item)"
+        v-for="(item, index) in navItems"
+        :key="index"
+        class="nav-item"
+      >
+        {{ item }}
+      </li>
+    </ul>
   </div>
 </template>
 
-<style>
+<style scoped>
 .modal-bg {
   position: absolute;
   width: 100%;
@@ -17,10 +24,24 @@
   align-items: center;
 }
 .menu {
-  width: 40%;
-  height: 30%;
+  width: 70%;
+  height: 60%;
   background-color: white;
   z-index: 100;
+  border-radius: 10px;
+  box-shadow: 1px 1px 18px 0 #00000050;
+  padding: 20px;
+  overflow: scroll;
+}
+.nav-item {
+  list-style-type: none;
+  font-size: xx-large;
+  padding: 20px;
+}
+.nav-item:hover {
+  cursor: pointer;
+  background-color: lightgrey;
+  transition: all ease 0.2s;
 }
 </style>
 
@@ -31,15 +52,31 @@ import firebase from "firebase";
 import "vue-material/dist/vue-material.min.css";
 import { MdButton, MdIcon } from "vue-material/dist/components";
 
-export default Vue.use(MdButton)
-  .use(MdIcon)
-  .extend({
-    name: "NavMenu",
-    data() {
-      return {
-        authUser: ""
-      };
+export default Vue.extend({
+  name: "NavMenu",
+  props: {},
+  data() {
+    return {
+      navItems: [
+        "Read",
+        "Watch",
+        "Sing",
+        "Cook",
+        "See",
+        "Visit",
+        "Listen",
+        "Travel",
+        "Go"
+      ]
+    };
+  },
+  methods: {
+    goto(item) {
+      this.$router.push(`/${item.toLowerCase()}`);
     },
-    methods: {}
-  });
+    onClose() {
+      this.$emit("clicked");
+    }
+  }
+});
 </script>

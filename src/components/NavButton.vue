@@ -1,10 +1,10 @@
 <template>
-  <fragment>
+  <fragment v-on:close-modal="this.open = false">
     <md-button @click="onPress" class="md-icon-button menu-button">
       <md-icon v-if="open">close</md-icon>
-      <md-icon v-else="open">menu</md-icon>
+      <md-icon v-else>menu</md-icon>
     </md-button>
-    <NavMenu v-if="open" />
+    <NavMenu v-show="open" @clicked="handleClose" />
   </fragment>
 </template>
 
@@ -45,6 +45,9 @@ export default Vue.use(MdButton)
         console.log("click button");
 
         this.open = this.open ? false : true;
+      },
+      handleClose() {
+        this.open = false;
       }
     }
   });
