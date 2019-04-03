@@ -14,7 +14,6 @@
       <md-button type="submit" class="md-icon-button submit-button">
         <md-icon>arrow_forward</md-icon>
       </md-button>
-    
     </form>
   </div>
 </template>
