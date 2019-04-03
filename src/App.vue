@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <fragment v-if="authUser">
-      <router-view />
+      <router-view :key="$route.path" />
       <div class="nav-button-container">
         <NavButton />
       </div>
