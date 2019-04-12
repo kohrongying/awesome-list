@@ -1,10 +1,9 @@
 <template>
-  <fragment v-on:close-modal="this.open = false">
-    <md-button @click="onPress" class="md-icon-button menu-button">
+  <fragment>
+    <md-button @click="buttonClick" class="md-icon-button menu-button">
       <md-icon v-if="open">close</md-icon>
       <md-icon v-else>menu</md-icon>
     </md-button>
-    <NavMenu v-show="open" @clicked="handleClose" />
   </fragment>
 </template>
 
@@ -14,6 +13,9 @@
   margin: 50px;
   z-index: 100;
   background-color: white;
+  position: absolute;
+  bottom: 50px;
+  margin: 0;
 }
 </style>
 
@@ -34,20 +36,17 @@ export default Vue.use(MdButton)
       Fragment,
       NavMenu
     },
+    props: [
+      "open"
+    ],
     data() {
       return {
-        authUser: "",
-        open: false
+        authUser: ""
       };
     },
     methods: {
-      onPress() {
-        console.log("click button");
-
-        this.open = this.open ? false : true;
-      },
-      handleClose() {
-        this.open = false;
+      buttonClick(){
+        this.$emit('clicked')
       }
     }
   });

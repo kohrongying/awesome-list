@@ -1,5 +1,5 @@
 <template>
-  <div class="modal-bg" @click="onClose">
+  <div class="modal-bg">
     <ul class="menu">
       <li
         @click="goto(item)"
@@ -82,9 +82,6 @@ export default Vue.extend({
   methods: {
     goto(item) {
       this.$router.push(`/${item.toLowerCase()}`);
-    },
-    onClose() {
-      this.$emit("clicked");
     },
     logout() {
       firebase

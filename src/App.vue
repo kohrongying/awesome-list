@@ -2,10 +2,10 @@
   <div id="app">
     <fragment v-if="authUser">
       <router-view :key="$route.path" />
-      <div class="nav-button-container">
-        <NavButton />
-      </div>
+      <NavButton @clicked="handlePress" :open="open"/>
+      <NavMenu v-if="open"/>
     </fragment>
+
     <fragment v-else>
       <LoginButton />
     </fragment>
@@ -13,14 +13,6 @@
 </template>
 
 <style>
-.nav-button-container {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-}
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -43,7 +35,9 @@ i {
 import Vue from "vue";
 import LoginButton from "@/components/LoginButton.vue";
 import firebase from "firebase";
+import { db } from "./main";
 import NavButton from "@/components/NavButton.vue"; // @ is an alias to /src
+import NavMenu from "@/components/NavMenu.vue";
 import { Fragment } from "vue-fragment";
 
 export default Vue.extend({
@@ -51,11 +45,13 @@ export default Vue.extend({
   components: {
     LoginButton,
     NavButton,
+    NavMenu,
     Fragment
   },
   data() {
     return {
-      authUser: ""
+      authUser: "",
+      open: false
     };
   },
   created() {
@@ -66,6 +62,11 @@ export default Vue.extend({
         this.authUser = ""
       }
     });
+  },
+  methods: {
+    handlePress() {
+      this.open = this.open ? false : true;
+    }
   }
 });
 </script>
