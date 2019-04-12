@@ -57,17 +57,7 @@ export default Vue.extend({
   props: {},
   data() {
     return {
-      navItems: [
-        "Read",
-        "Watch",
-        "Sing",
-        "Cook",
-        "See",
-        "Visit",
-        "Listen",
-        "Travel",
-        "Go"
-      ]
+      navItems: []
     };
   },
   methods: {
@@ -77,6 +67,13 @@ export default Vue.extend({
     onClose() {
       this.$emit("clicked");
     }
+  },
+  created() {
+    this.uid = firebase.auth().currentUser.uid;
+    const userRef = db.collection("users").doc(`${this.uid}`);
+    userRef.get().then(doc => {
+      this.navItems = Object.keys(doc.data());
+    });
   }
 });
 </script>
