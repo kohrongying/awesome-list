@@ -63,7 +63,7 @@ export default Vue.extend({
       if (user) {
         this.authUser = user.uid;
       } else {
-        console.log("nothing changed");
+        this.authUser = ""
       }
     });
   }

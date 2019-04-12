@@ -9,6 +9,12 @@
       >
         {{ item }}
       </li>
+      <li
+        @click="logout"
+        class="logout-link"
+      >
+        logout
+      </li>
     </ul>
   </div>
 </template>
@@ -43,6 +49,19 @@
   background-color: lightgrey;
   transition: all ease 0.2s;
 }
+.logout-link{
+  border-top: 1px lightgrey solid;
+  padding: 20px;
+  padding-top: 40px;
+  margin-top: 20px;
+  list-style-type: none;
+  font-size: x-large;
+}
+.logout-link:hover{
+  cursor: pointer;
+  color: lightgrey;
+  transition: all ease 0.2s;
+}
 </style>
 
 <script lang="ts">
@@ -66,6 +85,18 @@ export default Vue.extend({
     },
     onClose() {
       this.$emit("clicked");
+    },
+    logout() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          console.log("logout success");
+          this.$router.push('/');
+        })
+        .catch(err => {
+          console.log("error " + err.message);
+        });  
     }
   },
   created() {

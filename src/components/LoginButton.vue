@@ -44,13 +44,11 @@ export default Vue.use(MdButton)
           .auth()
           .signInWithPopup(provider)
           .then(user => {
-            console.log("hello");
-            alert("login success");
+            console.log("login success");
           })
           .catch(err => {
-            alert("error " + err.message);
+            console.log("error " + err.message);
           });
-        console.log("end");
       }
     }
   });
