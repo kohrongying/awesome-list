@@ -9,10 +9,10 @@
       >
         {{ item }}
       </li>
-      <li
-        @click="logout"
-        class="logout-link"
-      >
+      <li @click="homeClick" class="logout-link home-link">
+        home
+      </li>
+      <li @click="logout" class="logout-link">
         logout
       </li>
     </ul>
@@ -49,13 +49,15 @@
   background-color: lightgrey;
   transition: all ease 0.2s;
 }
-.logout-link{
-  border-top: 1px lightgrey solid;
+.logout-link {
   padding: 20px;
-  padding-top: 40px;
-  margin-top: 20px;
   list-style-type: none;
   font-size: x-large;
+}
+.home-link{
+  border-top: 1px lightgrey solid;
+  padding-top: 40px;
+  margin-top: 20px;
 }
 .logout-link:hover{
   cursor: pointer;
@@ -94,6 +96,9 @@ export default Vue.extend({
         .catch(err => {
           console.log("error " + err.message);
         });  
+    },
+    homeClick() {
+      this.$router.push('/');
     }
   },
   created() {
