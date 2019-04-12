@@ -3,7 +3,7 @@
     <fragment v-if="authUser">
       <router-view :key="$route.path" />
       <NavButton @clicked="handlePress" :open="open"/>
-      <NavMenu v-if="open"/>
+      <NavMenu v-if="open" @clicked="handlePress" />
     </fragment>
 
     <fragment v-else>

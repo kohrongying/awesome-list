@@ -83,6 +83,7 @@ export default Vue.extend({
   },
   methods: {
     goto(item) {
+      this.$emit('clicked')
       this.$router.push(`/${item.toLowerCase()}`);
     },
     logout() {
@@ -98,6 +99,7 @@ export default Vue.extend({
         });  
     },
     homeClick() {
+      this.$emit('clicked')
       this.$router.push('/');
     }
   },
