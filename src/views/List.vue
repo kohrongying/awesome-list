@@ -1,11 +1,13 @@
 <template>
-  <div class="read">
+  <div class="list">
     <h1 class="title">{{ this.$route.params.list }}</h1>
-    <div v-for="(item, index) in items" :key="index" class="action-item">
-      <p>{{ item.name }}</p>
-      <md-button @click="deleteItem(item)" class="md-icon-button">
-        <md-icon>close</md-icon>
-      </md-button>
+    <div class="list-items">
+      <div v-for="(item, index) in items" :key="index" class="action-item">
+        <p>{{ item.name }}</p>
+        <md-button @click="deleteItem(item)" class="md-icon-button">
+          <md-icon>close</md-icon>
+        </md-button>
+      </div>
     </div>
   </div>
 </template>
@@ -13,6 +15,11 @@
 <style scoped>
 .title {
   font-size: xx-large;
+}
+
+.list-items {
+  height: 60vh;
+  overflow-y: scroll;
 }
 
 .action-item {
@@ -37,6 +44,7 @@ export default Vue.use(MdButton)
     data() {
       return {
         items: [],
+        // items: db.collection("users").doc(`${this.uid}`),
         uid: ""
       };
     },
@@ -46,14 +54,28 @@ export default Vue.use(MdButton)
       const userRef = db.collection("users").doc(`${this.uid}`);
       userRef.get().then(doc => {
         this.items = doc.data()[this.$route.params.list];
-        console.log(doc.data()["read"]);
+        // for (let item in allItems) {
+        //   if (allItems[item].status === "active") {
+        //     this.items.push(allItems[item])
+        //   }
+        // }
       });
+      console.log('runn')
+    },
+    beforeUpdate() {
+      const userRef = db.collection("users").doc(`${this.uid}`);
+      userRef.get().then(doc => {
+        this.items = doc.data()[this.$route.params.list];
+        
+      });
+      console.log('updated')
     },
     methods: {
       deleteItem(item) {
-        // db.collection("read")
-        //   .doc(item[".key"])
-        //   .delete();
+        db.collection("users").doc(`${this.uid}`)
+          .update({
+            [this.$route.params.list]: firebase.firestore.FieldValue.arrayRemove(item)
+          })
       }
     }
   });

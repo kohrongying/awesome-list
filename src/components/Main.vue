@@ -89,7 +89,6 @@ export default Vue.use(MdButton)
             status: "active"
           })
         });
-        this.action = "";
         this.item = "";
       }
     },
