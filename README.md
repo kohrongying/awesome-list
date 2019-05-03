@@ -1,19 +1,26 @@
 # awesome-list
 
-A list that helps you collect your thoughts in the most minimal way possible.
+A list that helps you collect your thoughts in the most minimal way possible. Ok, its just a to-do list.
 
-## To do
+What I want to do:
+
+![HomeView](img1.png)
+
+My to-do list:
+![ListView](img2.png)
+
+## Infrastructure 
+- VueJS frontend (built using Vue-CLI) - super shookt
+- Typescript
+- Firestore backend db
+
+## Implemented
 - [x] Authentication
-- [x] Restructure DB
-- [x] Navbar
-- [x] Populate Nav Menu
+- [x] Nav Menu
 - [x] Show Lists Dynamically
-- [ ] Delete item or archive them
-- [x] Add sign out button
 
-My journey into VueJS, built using Vue-CLI (wa I super shookt by their CLI ~~shookness~~), with Typescript and Firestore as my backend db. 
 
-## Installation 
+## Development
 ```
 $ npm install
 
